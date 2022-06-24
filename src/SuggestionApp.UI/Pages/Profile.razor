@@ -40,15 +40,18 @@
         // TODO - Replace with user lookup
         loggedInUser = await userData.GetUserFromAuthentication("abc-123");
 
-        var results = await suggestionData.GetUsersSuggestions(loggedInUser.Id);
-
-        if (loggedInUser is not null && results is not null)
+        if (loggedInUser is not null)
         {
-            submissions = results.OrderByDescending(s => s.DateCreated).ToList();
-            approved = submissions.Where(s => s.ApprovedForRelease && !s.Archived && !s.Rejected).ToList();
-            archived = submissions.Where(s => s.Archived && !s.Rejected).ToList();
-            pending = submissions.Where(s => !s.ApprovedForRelease && !s.Rejected).ToList();            
-            rejected = submissions.Where(s => s.Rejected).ToList();
+            var results = await suggestionData.GetUsersSuggestions(loggedInUser.Id);
+
+            if (results is not null)
+            {
+                submissions = results.OrderByDescending(s => s.DateCreated).ToList();
+                approved = submissions.Where(s => s.ApprovedForRelease && !s.Archived && !s.Rejected).ToList();
+                archived = submissions.Where(s => s.Archived && !s.Rejected).ToList();
+                pending = submissions.Where(s => !s.ApprovedForRelease && !s.Rejected).ToList();
+                rejected = submissions.Where(s => s.Rejected).ToList();
+            }
         }
     }
 
