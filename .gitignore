@@ -1,0 +1,13 @@
+**/.Rproj.user
+**/.Rhistory
+**/.RData
+**/.Ruserdata
+**/node_modules
+.Rproj.user
+**/*.jfm
+**/*.dbmdl
+.vs/
+.vscode/
+bin/
+obj/
+*.csproj.user
