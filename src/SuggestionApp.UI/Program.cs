@@ -2,10 +2,17 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Rewrite;
 using SuggestionApp.UI;
+using SuggestionApp.UI.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.ConfigureServices();
+
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+
+//builder.Logging.ClearProviders().AddSimpleCustomLogger();
+builder.Logging.ClearProviders().AddMSCustomLogger();
 
 var app = builder.Build();
 
@@ -40,5 +47,6 @@ app.UseRewriter(
 app.MapControllers();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
 
 app.Run();

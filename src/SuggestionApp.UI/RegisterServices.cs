@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using SuggestionApp.Library.DI;
+using SuggestionApp.UI.Logging;
 
 namespace SuggestionApp.UI;
 
@@ -37,6 +38,8 @@ public static class RegisterServices
         builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
         {
             builder.RegisterModule(new LibraryModule());
+            // builder.RegisterType<SimpleCustomLogger>().As<ILogger>().SingleInstance();
+            builder.RegisterType<MSCustomLogger>().As<ILogger>().SingleInstance();
         });
     }
 }
