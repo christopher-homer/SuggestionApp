@@ -6,17 +6,17 @@
 @inject IUserData userData
 @inject NavigationManager navManager;
 
-<h1>My Profile</h1>
+<h1 class="page-heading text-uppercase mb-4">My Profile</h1>
 
-<div>
-    <div>
-        <button @onclick="ClosePage"></button>
+<div class="row">
+    <div class="col-12 close-button-section">
+        <button class="btn btn-close" @onclick="ClosePage"></button>
     </div>
 </div>
 
-<div>
-    <h2>My Account</h2>
-    <p>
+<div class="form-layout mb-3">
+    <h2 class="my-submission-heading">My Account</h2>
+    <p class="my-submission-text">
         <a href="/MicrosoftIdentity/Account/EditProfile">
             Edit My Profile
         </a>
