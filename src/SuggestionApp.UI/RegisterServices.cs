@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Identity.Web;
 using SuggestionApp.Library.DI;
 
 namespace SuggestionApp.UI;
@@ -12,6 +14,17 @@ public static class RegisterServices
         builder.Services.AddServerSideBlazor();
         builder.Services.AddMemoryCache();
 
+        builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAdB2C"));
+
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Admin", policy =>
+            {
+                policy.RequireClaim("jobTitle", "Admin");
+            });
+        });
+
         //builder.Services.AddSingleton<IDbConnection, DbConnection>();
         //builder.Services.AddSingleton<ICategoryData, MongoCategoryData>();
         //builder.Services.AddSingleton<IStatusData, MongoStatusData>();
@@ -23,6 +36,5 @@ public static class RegisterServices
         {
             builder.RegisterModule(new LibraryModule());
         });
-
     }
 }
