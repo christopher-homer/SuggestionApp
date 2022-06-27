@@ -17,6 +17,7 @@ public partial class Details
         suggestion = await suggestionData.GetSuggestion(Id);
         loggedInUser = await authProvider.GetUserFromAuth(userData);
         statuses = await statusData.GetAllStatuses();
+        throw new Exception("exception thrown...please handle");
     }
 
     private async Task CompleteSetStatus()

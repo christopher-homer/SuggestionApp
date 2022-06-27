@@ -38,8 +38,8 @@ public static class RegisterServices
         builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
         {
             builder.RegisterModule(new LibraryModule());
-            // builder.RegisterType<SimpleCustomLogger>().As<ILogger>().SingleInstance();
-            builder.RegisterType<MSCustomLogger>().As<ILogger>().SingleInstance();
+            builder.RegisterType<SimpleCustomLogger>().As<ILogger>().SingleInstance();
+            //builder.RegisterType<MSCustomLogger>().As<ILogger>().SingleInstance();
         });
     }
 }
