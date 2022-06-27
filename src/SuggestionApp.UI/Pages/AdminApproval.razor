@@ -1,8 +1,8 @@
 ﻿@page "/AdminApproval"
+@attribute [Authorize(Policy = "Admin")]
 @inject ISuggestionData suggestionData
 @inject IUserData userData
 @inject NavigationManager navManager;
-
 
 <h1>Pending Submissions</h1>
 

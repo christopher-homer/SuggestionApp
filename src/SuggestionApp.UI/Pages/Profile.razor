@@ -1,4 +1,5 @@
 ﻿@page "/Profile"
+@attribute [Authorize]
 @using SuggestionApp.UI.Components
 @inject ISuggestionData suggestionData
 @inject IUserData userData
@@ -37,7 +38,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-        // TODO - Replace with user lookup
+
         loggedInUser = await userData.GetUserFromAuthentication("abc-123");
 
         if (loggedInUser is not null)
