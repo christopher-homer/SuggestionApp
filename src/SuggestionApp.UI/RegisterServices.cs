@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
 using SuggestionApp.Library.DI;
 
 namespace SuggestionApp.UI;
@@ -11,8 +12,9 @@ public static class RegisterServices
     public static void ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddRazorPages();
-        builder.Services.AddServerSideBlazor();
+        builder.Services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler(); ;
         builder.Services.AddMemoryCache();
+        builder.Services.AddControllersWithViews().AddMicrosoftIdentityUI();
 
         builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAdB2C"));
