@@ -1,6 +1,7 @@
 ﻿@page "/Profile"
 @attribute [Authorize]
 @using SuggestionApp.UI.Components
+@inject AuthenticationStateProvider authProvider
 @inject ISuggestionData suggestionData
 @inject IUserData userData
 @inject NavigationManager navManager;
@@ -38,8 +39,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-
-        loggedInUser = await userData.GetUserFromAuthentication("abc-123");
+        loggedInUser = await authProvider.GetUserFromAuth(userData);
 
         if (loggedInUser is not null)
         {
