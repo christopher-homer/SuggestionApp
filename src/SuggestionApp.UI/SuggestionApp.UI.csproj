@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a244dbca-df69-4b10-a78e-0853295e4749</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.25.1" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.25.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuggestionApp.Library\SuggestionApp.Library.csproj" />
+  </ItemGroup>
+
+</Project>

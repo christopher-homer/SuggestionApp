@@ -1,0 +1,47 @@
+﻿@if (Suggestions?.Count > 0)
+{
+    <div class="form-layout mb-3">
+        <h2 class="my-submission-heading">@Title</h2>
+        <p class="my-submission-text">@Description</p>
+
+        @foreach (var s in Suggestions)
+        {
+            <hr class="my-submission-separator"/>
+            <div class="fw-bold suggestion-detail-suggestion">
+                @s.Suggestion        
+            </div>
+            <p class="my-submission-text">
+                @s.DateCreated.ToShortDateString()
+            </p>
+            <p class="my-submission-text">
+                Total Votes: @s.UserVotes.Count
+            </p>
+            <p class="my-submission-text">
+                @s.Category.CategoryName;
+            </p>
+            <p class="my-submission-text">
+                @s.Description
+            </p>
+            @if (s.SuggestionStatus is not null)
+            {
+                <div class="fw-bold suggestion-detail-suggestion">
+                    @s.SuggestionStatus.StatusName
+                </div>
+                <p class="my-submission-text">
+                    @((MarkupString)s.OwnerNotes)
+                </p>
+            }
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<SuggestionModel> Suggestions { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+}
